@@ -1,18 +1,9 @@
-import Logo from "@/assets/icons/logo"
+import Logo from "@/assets/icons/Logo"
 import { Button } from "@/components/ui/button"
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Link } from "react-router"
 
-// Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
   { href: "#", label: "Home", active: true },
   { href: "#", label: "Features" },
@@ -22,11 +13,47 @@ const navigationLinks = [
 
 export default function Navbar() {
   return (
-    <header className="border-b">
-      <div className="px-4 container mx-auto flex h-16 items-center justify-between gap-4">
-        {/* Left side */}
+    <header className="shadow sticky top-0 z-50">
+      <div className="px-4 container mx-auto flex h-16 items-center justify-between">
+        <div className="flex items-center justify-between gap-6">
+          {/* Left: Logo */}
+          <Link
+            to="/"
+            className="flex items-center gap-2 text-primary hover:text-primary/90 font-semibold text-lg"
+          >
+            <Logo />
+            <span>CholoGhuri.com</span>
+          </Link>
+
+          {/* Center: Navigation menu (hidden on small screens) */}
+          <NavigationMenu className="max-md:hidden">
+            <NavigationMenuList className="gap-2">
+              {navigationLinks.map((link, index) => (
+                <NavigationMenuItem key={index}>
+                  <NavigationMenuLink
+                    active={link.active}
+                    href={link.href}
+                    className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                  >
+                    {link.label}
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
+
+        {/* Right: Auth Buttons + Mobile Menu Trigger */}
         <div className="flex items-center gap-2">
-          {/* Mobile menu trigger */}
+          {/* Mobile menu trigger (shown on small screens) */}
+          {/* Auth Buttons */}
+          <Button asChild variant="ghost" size="sm" className="text-sm">
+            <a href="#">Sign In</a>
+          </Button>
+          <Button asChild size="sm" className="text-sm hidden md:inline-flex">
+            <a href="#">Get Started</a>
+          </Button>
+
           <Popover>
             <PopoverTrigger asChild>
               <Button
@@ -44,11 +71,10 @@ export default function Navbar() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
                     d="M4 12L20 12"
-                    className="origin-center -translate-y-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-x-0 group-aria-expanded:translate-y-0 group-aria-expanded:rotate-[315deg]"
+                    className="origin-center -translate-y-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:rotate-[315deg]"
                   />
                   <path
                     d="M4 12H20"
@@ -56,19 +82,19 @@ export default function Navbar() {
                   />
                   <path
                     d="M4 12H20"
-                    className="origin-center translate-y-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-y-0 group-aria-expanded:rotate-[135deg]"
+                    className="origin-center translate-y-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:rotate-[135deg]"
                   />
                 </svg>
               </Button>
             </PopoverTrigger>
-            <PopoverContent align="start" className="w-36 p-1 md:hidden">
+            <PopoverContent align="end" className="w-36 p-1 md:hidden">
               <NavigationMenu className="max-w-none *:w-full">
-                <NavigationMenuList className="flex-col items-start gap-0 md:gap-2">
+                <NavigationMenuList className="flex-col items-start gap-0">
                   {navigationLinks.map((link, index) => (
                     <NavigationMenuItem key={index} className="w-full">
                       <NavigationMenuLink
                         href={link.href}
-                        className="py-1.5"
+                        className="py-1.5 w-full block"
                         active={link.active}
                       >
                         {link.label}
@@ -79,39 +105,8 @@ export default function Navbar() {
               </NavigationMenu>
             </PopoverContent>
           </Popover>
-          {/* Main nav */}
-          <div className="flex items-center gap-6">
-            <a href="#" className="text-primary hover:text-primary/90">
-              <Logo />
-            </a>
-            {/* Navigation menu */}
-            <NavigationMenu className="max-md:hidden">
-              <NavigationMenuList className="gap-2">
-                {navigationLinks.map((link, index) => (
-                  <NavigationMenuItem key={index}>
-                    <NavigationMenuLink
-                      active={link.active}
-                      href={link.href}
-                      className="text-muted-foreground hover:text-primary py-1.5 font-medium"
-                    >
-                      {link.label}
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
-                ))}
-              </NavigationMenuList>
-            </NavigationMenu>
-          </div>
-        </div>
-        {/* Right side */}
-        <div className="flex items-center gap-2">
-          <Button asChild variant="ghost" size="sm" className="text-sm">
-            <a href="#">Sign In</a>
-          </Button>
-          <Button asChild size="sm" className="text-sm">
-            <a href="#">Get Started</a>
-          </Button>
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
