@@ -1,9 +1,9 @@
-import Logo from "@/assets/icons/Logo"
-import { Button } from "@/components/ui/button"
-import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Link } from "react-router"
+import Logo from "@/assets/icons/Logo"
 import { ModeToggle } from "../Mode-toggle"
+import { Button } from "@/components/ui/button"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu"
 
 const navigationLinks = [
   { href: "#", label: "Home", active: true },
@@ -23,7 +23,7 @@ export default function Navbar() {
             className="flex items-center gap-2 text-primary hover:text-primary/90 font-semibold text-lg"
           >
             <Logo />
-            <span>CholoGhuri.com</span>
+            <span className="text-[#FF7A00] dark:text-[#FFA94D]">CholoGhuri.com</span>
           </Link>
 
           {/* Center: Navigation menu (hidden on small screens) */}

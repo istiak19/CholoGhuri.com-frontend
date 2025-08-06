@@ -10,12 +10,13 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="border-t border-gray-200">
+        <footer className="border-t border-[#FF7A00] dark:border-[#FFA94D]">
             <div className="mx-auto container space-y-10 px-4 py-8">
                 <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
                     <div>
                         <div className="text-foreground">
                             <Logo />
+                            <p className="text-sm font-medium mt-2">Explore Bangladesh. Experience Freedom.</p>
                         </div>
 
                         <p className="mt-4 max-w-sm text-sm text-muted-foreground">
@@ -86,7 +87,7 @@ const Footer = () => {
                 </div>
 
                 <div className="border-t pt-8 text-center text-muted-foreground">
-                    &copy; {new Date().getFullYear()} CholoGhuri.com. All rights reserved.
+                    &copy; {new Date().getFullYear()} <span className="text-[#FF7A00]">CholoGhuri.com</span>. All rights reserved.
                 </div>
             </div>
         </footer>
