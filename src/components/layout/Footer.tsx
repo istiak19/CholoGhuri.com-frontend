@@ -42,7 +42,7 @@ const Footer = () => {
                     <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4">
                         {/* Travel Services */}
                         <div>
-                            <p className="font-semibold text-gray-900">Services</p>
+                            <p className="font-semibold text-foreground">Services</p>
                             <ul className="mt-4 space-y-3 text-sm *:text-muted-foreground">
                                 <li><a href="#" className="hover:underline">Tour Packages</a></li>
                                 <li><a href="#" className="hover:underline">Custom Trips</a></li>
@@ -52,7 +52,7 @@ const Footer = () => {
 
                         {/* Company Info */}
                         <div>
-                            <p className="font-semibold text-gray-900">Company</p>
+                            <p className="font-semibold text-foreground">Company</p>
                             <ul className="mt-4 space-y-3 text-sm *:text-muted-foreground">
                                 <li><a href="#" className="hover:underline ">About Us</a></li>
                                 <li><a href="#" className="hover:underline">Careers</a></li>
@@ -63,7 +63,7 @@ const Footer = () => {
 
                         {/* Support Links */}
                         <div>
-                            <p className="font-semibold text-gray-900">Support</p>
+                            <p className="font-semibold text-foreground">Support</p>
                             <ul className="mt-4 space-y-3 text-sm *:text-muted-foreground">
                                 <li><a href="#" className="hover:underline">Contact Us</a></li>
                                 <li><a href="#" className="hover:underline">Help Center</a></li>
@@ -74,7 +74,7 @@ const Footer = () => {
 
                         {/* Legal */}
                         <div>
-                            <p className="font-semibold text-gray-900">Legal</p>
+                            <p className="font-semibold text-foreground">Legal</p>
                             <ul className="mt-4 space-y-3 text-sm *:text-muted-foreground">
                                 <li><a href="#" className="hover:underline">Terms & Conditions</a></li>
                                 <li><a href="#" className="hover:underline">Privacy Policy</a></li>

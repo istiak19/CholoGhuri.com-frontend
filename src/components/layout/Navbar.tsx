@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Link } from "react-router"
+import { ModeToggle } from "../Mode-toggle"
 
 const navigationLinks = [
   { href: "#", label: "Home", active: true },
@@ -45,8 +46,8 @@ export default function Navbar() {
 
         {/* Right: Auth Buttons + Mobile Menu Trigger */}
         <div className="flex items-center gap-2">
-          {/* Mobile menu trigger (shown on small screens) */}
-          {/* Auth Buttons */}
+          {/* Theme change */}
+          <ModeToggle />
           <Button asChild variant="ghost" size="sm" className="text-sm">
             <a href="#">Sign In</a>
           </Button>
