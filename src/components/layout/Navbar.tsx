@@ -6,10 +6,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu"
 
 const navigationLinks = [
-  { href: "#", label: "Home", active: true },
-  { href: "#", label: "Features" },
-  { href: "#", label: "Pricing" },
-  { href: "#", label: "About" },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
 ]
 
 export default function Navbar() {
@@ -23,23 +21,26 @@ export default function Navbar() {
             className="flex items-center gap-2 text-primary hover:text-primary/90 font-semibold text-lg"
           >
             <Logo />
-            <span className="text-[#FF7A00] dark:text-[#FFA94D]">CholoGhuri.com</span>
+            <span className="text-[#FF7A00]">CholoGhuri.com</span>
           </Link>
 
           {/* Center: Navigation menu (hidden on small screens) */}
           <NavigationMenu className="max-md:hidden">
             <NavigationMenuList className="gap-2">
-              {navigationLinks.map((link, index) => (
-                <NavigationMenuItem key={index}>
-                  <NavigationMenuLink
-                    active={link.active}
-                    href={link.href}
-                    className="text-muted-foreground hover:text-primary py-1.5 font-medium"
-                  >
-                    {link.label}
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              ))}
+              {
+                navigationLinks.map((link, index) => (
+                  <NavigationMenuItem key={index}>
+                    <NavigationMenuLink
+                      asChild
+                      className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                    >
+                      <Link to={link.href}>
+                        {link.label}
+                      </Link>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                ))
+              }
             </NavigationMenuList>
           </NavigationMenu>
         </div>
@@ -48,11 +49,8 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           {/* Theme change */}
           <ModeToggle />
-          <Button asChild variant="ghost" size="sm" className="text-sm">
-            <a href="#">Sign In</a>
-          </Button>
-          <Button asChild size="sm" className="text-sm hidden md:inline-flex">
-            <a href="#">Get Started</a>
+          <Button asChild className="text-sm hidden md:inline-flex">
+            <Link to="/login">Login</Link>
           </Button>
 
           <Popover>
@@ -91,17 +89,20 @@ export default function Navbar() {
             <PopoverContent align="end" className="w-36 p-1 md:hidden">
               <NavigationMenu className="max-w-none *:w-full">
                 <NavigationMenuList className="flex-col items-start gap-0">
-                  {navigationLinks.map((link, index) => (
-                    <NavigationMenuItem key={index} className="w-full">
-                      <NavigationMenuLink
-                        href={link.href}
-                        className="py-1.5 w-full block"
-                        active={link.active}
-                      >
-                        {link.label}
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-                  ))}
+                  {
+                    navigationLinks.map((link, index) => (
+                      <NavigationMenuItem key={index} className="w-full">
+                        <NavigationMenuLink
+                          asChild
+                          className="py-1.5 w-full block"
+                        >
+                          <Link to={link.href}>
+                            {link.label}
+                          </Link>
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                    ))
+                  }
                 </NavigationMenuList>
               </NavigationMenu>
             </PopoverContent>
