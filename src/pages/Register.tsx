@@ -1,6 +1,7 @@
 import Logo from "@/assets/icons/Logo";
 import { Link } from "react-router";
 import TravelRegister from "@/assets/images/travel-register.jpg";
+import RegisterForm from "@/components/modules/RegisterForm";
 
 const Register = () => {
     return (
@@ -20,7 +21,7 @@ const Register = () => {
                 </div>
                 <div className="flex flex-1 items-center justify-center">
                     <div className="w-full max-w-xs">
-                        {/* <RegisterForm /> */}
+                        <RegisterForm />
                     </div>
                 </div>
             </div>
