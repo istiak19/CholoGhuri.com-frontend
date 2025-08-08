@@ -1,12 +1,13 @@
 import { z } from "zod";
 import { cn } from "@/lib/utils";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Input } from "../ui/input";
 import Password from "../ui/Password";
 import { Button } from "../ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
+import { useRegisterMutation } from "@/redux/features/auth/auth.api";
 
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
 const registerFormSchema = z
@@ -35,6 +36,9 @@ const RegisterForm = ({
     className,
     ...props
 }: React.HTMLAttributes<HTMLDivElement>) => {
+    const [register] = useRegisterMutation();
+    const navigate = useNavigate();
+
     const form = useForm<RegisterFormValues>({
         resolver: zodResolver(registerFormSchema),
         defaultValues: {
@@ -45,11 +49,17 @@ const RegisterForm = ({
         },
     });
 
-    const onSubmit = (data: RegisterFormValues) => {
+    const onSubmit = async (data: RegisterFormValues) => {
         const { name, email, password } = data;
         const userInfo = { name, email, password };
-        console.log(userInfo);
-        // TODO: Add API call
+        try {
+            const result = await register(userInfo).unwrap();
+            if (result.success === true) {
+                navigate("/verify")
+            };
+        } catch (error) {
+            console.log(error)
+        }
     };
 
     return (
