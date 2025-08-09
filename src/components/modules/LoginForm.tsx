@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { useLoginMutation } from "@/redux/features/auth/auth.api";
+import { toast } from "react-toastify";
 
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
 const loginFormSchema = z
@@ -44,14 +45,17 @@ const LoginForm = ({
         try {
             const result = await login(userInfo).unwrap();
             console.log(result);
-            if (result.data.success) {
+            if (result.success) {
                 navigate("/")
             };
         } catch (error: any) {
-            if (error.status === 401) {
-                navigate("/verify", { state: data.email })
+            if (error.data.message === "User is not verified") {
+                navigate("/verify", { state: data.email });
             };
-            console.log(error)
+            if (error.data.message === "Incorrect password") {
+                toast.error("Incorrect password. Please try again.");
+            };
+            // console.log(error)
         }
     };
 
