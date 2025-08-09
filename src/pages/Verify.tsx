@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import z from "zod";
 import { useEffect, useState } from "react";
 import { Dot } from "lucide-react";
@@ -8,14 +9,15 @@ import { useLocation, useNavigate } from "react-router";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { useSentOtpMutation } from "@/redux/features/auth/auth.api";
+import { useSentOtpMutation, useVerifyOtpMutation } from "@/redux/features/auth/auth.api";
 import { toast } from "react-toastify";
 
 const Verify = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const email = location.state;
-    const [sendOtp] = useSentOtpMutation()
+    const [sendOtp] = useSentOtpMutation();
+    const [verifyOtp] = useVerifyOtpMutation();
 
     useEffect(() => {
         if (!email) {
@@ -39,21 +41,37 @@ const Verify = () => {
     const [confirm, setConfirm] = useState(false);
 
     const handleSentOtp = async () => {
-        const res = await sendOtp({ email });
+        const toastId = toast.loading("Sending OTP...");
         try {
-            setConfirm(true)
-            if (res.data?.success) {
-                toast.success(res.data?.message || "OTP sent successfully!");
+            const res = await sendOtp({ email }).unwrap();
+            if (res.success) {
+                toast.dismiss(toastId);
+                toast.success(res.message || "OTP sent successfully!");
+                setConfirm(true);
             };
-        } catch (error) {
-            console.log(error)
-            toast.error("Something went wrong while sending the OTP.")
+        } catch (error: any) {
+            console.error(error);
+            toast.error(error?.data?.message || "Something went wrong while sending the OTP.");
         }
     };
 
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
         console.log("OTP submitted:", data);
-        // TODO: Verify code with backend
+        const toastId = toast.loading("Verifying OTP...");
+        const userInfo = {
+            email,
+            otp: data.otp
+        };
+        try {
+            const res = await verifyOtp(userInfo).unwrap();
+            if (res.success) {
+                toast.dismiss(toastId);
+                toast.success(res.message || "OTP verified successfully!");
+            };
+        } catch (error: any) {
+            console.error(error);
+            toast.error(error?.data?.message || "Something went wrong while verifying the OTP.");
+        }
     };
 
     return (
