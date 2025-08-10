@@ -16,8 +16,7 @@ export default function Navbar() {
   const { data } = useGetMeUserQuery(undefined);
   const [logout] = useLogoutMutation();
   const dispatch = useAppDispatch();
-  console.log(data?.data?.email)
-  
+
   const handleLogout = async () => {
     await logout(undefined);
     dispatch(authApi.util.resetApiState());

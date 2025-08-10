@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { useRegisterMutation } from "@/redux/features/auth/auth.api";
+import config from "@/config";
 
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
 const registerFormSchema = z
@@ -57,6 +58,7 @@ const RegisterForm = ({
             if (result.success === true) {
                 navigate("/verify")
             };
+
         } catch (error) {
             console.log(error)
         }
@@ -157,6 +159,7 @@ const RegisterForm = ({
                 </span>
             </div>
             <Button
+                onClick={() => window.open(`${config.baseUrl}/auth/google`)}
                 type="button"
                 variant="outline"
                 className="w-full cursor-pointer"
