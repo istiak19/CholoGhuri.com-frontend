@@ -71,7 +71,8 @@ const Verify = () => {
             if (res.success) {
                 toast.dismiss(toastId);
                 toast.success(res.message || "OTP verified successfully!");
-            }
+                navigate("/");
+            };
         } catch (error: any) {
             console.error(error);
             toast.error(error?.data?.message || "Something went wrong while verifying the OTP.");
