@@ -4,6 +4,8 @@ import { ModeToggle } from "../Mode-toggle"
 import { Button } from "@/components/ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu"
+import { authApi, useGetMeUserQuery, useLogoutMutation } from "@/redux/features/auth/auth.api"
+import { useAppDispatch } from "@/redux/hooks"
 
 const navigationLinks = [
   { href: "/", label: "Home" },
@@ -11,6 +13,16 @@ const navigationLinks = [
 ]
 
 export default function Navbar() {
+  const { data } = useGetMeUserQuery(undefined);
+  const [logout] = useLogoutMutation();
+  const dispatch = useAppDispatch();
+  console.log(data?.data?.email)
+  
+  const handleLogout = async () => {
+    await logout(undefined);
+    dispatch(authApi.util.resetApiState());
+  };
+
   return (
     <header className="shadow sticky top-0 z-50">
       <div className="px-4 container mx-auto flex h-16 items-center justify-between">
@@ -49,9 +61,17 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           {/* Theme change */}
           <ModeToggle />
-          <Button asChild className="text-sm hidden md:inline-flex">
-            <Link to="/login">Login</Link>
-          </Button>
+          {
+            data?.data?.email ? (<Button
+              onClick={handleLogout}
+              variant="outline"
+              className="text-sm cursor-pointer"
+            >
+              Logout
+            </Button>) : (<Button asChild className="text-sm hidden md:inline-flex">
+              <Link to="/login">Login</Link>
+            </Button>)
+          }
 
           <Popover>
             <PopoverTrigger asChild>

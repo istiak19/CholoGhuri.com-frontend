@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { useLoginMutation } from "@/redux/features/auth/auth.api";
 import { toast } from "react-toastify";
+import config from "@/config";
 
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
 const loginFormSchema = z
@@ -118,7 +119,9 @@ const LoginForm = ({
                     Or continue with
                 </span>
             </div>
+            {/* http://localhost:5000/api/v1/auth/google */}
             <Button
+                onClick={() => window.open(`${config.baseUrl}/auth/google`)}
                 type="button"
                 variant="outline"
                 className="w-full cursor-pointer"
