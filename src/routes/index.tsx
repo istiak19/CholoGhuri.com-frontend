@@ -1,15 +1,17 @@
 import App from "@/App";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import About from "@/pages/About";
-import AddTour from "@/pages/Admin/AddTour";
-import Analytics from "@/pages/Admin/Analytics";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
-import Booking from "@/pages/User/Booking";
 import Verify from "@/pages/Verify";
 import { generateRoutes } from "@/utils/generatingRoute";
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import { adminSidebarRoute } from "./adminRoutes";
+import { userSidebarRoute } from "./userRoutes";
+import Unauthorized from "@/pages/Unauthorized";
+import { withAuth } from "@/utils/withAuth";
+import { role } from "@/constants/role";
+import type { IRole } from "@/types";
 
 const router = createBrowserRouter([
   {
@@ -24,17 +26,22 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    Component: DashboardLayout,
-    children: [...generateRoutes(adminSidebarRoute)]
+    Component: withAuth(DashboardLayout, role.admin as IRole),
+    children: [
+      {
+        index: true, element: <Navigate to="/admin/analytics" />
+      },
+      ...generateRoutes(adminSidebarRoute)
+    ]
   },
   {
     path: "/user",
-    Component: DashboardLayout,
+    Component: withAuth(DashboardLayout, role.user as IRole),
     children: [
       {
-        path: "booking",
-        Component: Booking
-      }
+        index: true, element: <Navigate to="/user/booking" />
+      },
+      ...generateRoutes(userSidebarRoute)
     ]
   },
   {
@@ -48,6 +55,10 @@ const router = createBrowserRouter([
   {
     path: "/verify",
     Component: Verify
+  },
+  {
+    path: "/unauthorized",
+    Component: Unauthorized
   },
 ]);
 

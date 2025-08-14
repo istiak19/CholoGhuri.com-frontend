@@ -1,29 +1,22 @@
 import * as React from "react";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarRail,
-} from "@/components/ui/sidebar"
+import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarRail } from "@/components/ui/sidebar"
 import Logo from "@/assets/icons/Logo";
 import { Link } from "react-router";
-import { adminSidebarRoute } from "@/routes/adminRoutes";
-
-const data = {
-  navMain: adminSidebarRoute,
-}
+import { getSideBar } from "@/utils/getSideBar";
+import { useGetMeUserQuery } from "@/redux/features/auth/auth.api";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { data: userData } = useGetMeUserQuery(undefined);
+  const data = {
+    navMain: getSideBar(userData?.data?.role),
+  };
+
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-        <Logo />
+        <Link to="/">
+          <Logo />
+        </Link>
       </SidebarHeader>
       <SidebarContent>
         {/* We create a SidebarGroup for each parent. */}
