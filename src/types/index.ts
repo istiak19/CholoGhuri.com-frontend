@@ -17,3 +17,5 @@ export interface ISidebarItem {
         component: ComponentType;
     }[];
 };
+
+export type IRole = "GUIDE" | "USER" | "ADMIN" | "SUPER_ADMIN"
