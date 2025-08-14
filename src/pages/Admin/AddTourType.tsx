@@ -1,3 +1,4 @@
+import { DeleteConfirmation } from "@/components/deleteConfirmation";
 import AddModal from "@/components/modules/Admin/Type/AddModal";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -12,7 +13,6 @@ const AddTourType = () => {
     const handleDelete = async (id: string) => {
         try {
             const res = await deleteTourType(id).unwrap();
-            console.log(res);
             if (res.success == true) {
                 toast.success(res.message)
             }
@@ -42,12 +42,13 @@ const AddTourType = () => {
                         >
                             <TableCell className="font-medium pl-6">{info.name}</TableCell>
                             <TableCell className="text-right pr-6">
-                                <Button
-                                    className="p-2 cursor-pointer"
-                                    onClick={() => handleDelete(info._id)}
-                                >
-                                    <Trash2 className="w-4 h-4" />
-                                </Button>
+                                <DeleteConfirmation itemName="Tour Type" onConfirm={() => handleDelete(info._id)}>
+                                    <Button
+                                        className="p-2 cursor-pointer"
+                                    >
+                                        <Trash2 className="w-4 h-4" />
+                                    </Button>
+                                </DeleteConfirmation>
                             </TableCell>
                         </TableRow>
                     ))}
