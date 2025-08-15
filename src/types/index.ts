@@ -19,13 +19,37 @@ export interface ISidebarItem {
 };
 
 export interface IDivision {
-  _id: string
-  name: string
-  thumbnail: string
-  description: string
-  createdAt: string
-  updatedAt: string
-  slug: string
+    _id: string
+    name: string
+    thumbnail: string
+    description: string
+    createdAt: string
+    updatedAt: string
+    slug: string
 };
 
 export type IRole = "GUIDE" | "USER" | "ADMIN" | "SUPER_ADMIN"
+
+type ZodIssue = {
+    code: string;
+    expected: string;
+    received: string;
+    path: string[];
+    message: string;
+};
+
+type ErrorSource = {
+    path: string;
+    message: string;
+};
+
+export interface IErrorResponse {
+    success: boolean;
+    message: string;
+    errorSources?: ErrorSource[];
+    err?: {
+        issues: ZodIssue[];
+        name: string;
+    };
+    stack?: string;
+}
