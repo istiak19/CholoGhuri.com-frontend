@@ -28,7 +28,7 @@ const AddTourType = () => {
                 <AddModal />
             </div>
             <Table className="border border-muted rounded-2xl overflow-hidden shadow-sm">
-                <TableHeader className="bg-gray-100">
+                <TableHeader>
                     <TableRow>
                         <TableHead className="pl-6">Name</TableHead>
                         <TableHead className="text-right pr-6">Action</TableHead>
@@ -38,7 +38,6 @@ const AddTourType = () => {
                     {data?.map((info: { _id: string; name: string }) => (
                         <TableRow
                             key={info._id}
-                            className="hover:bg-gray-50 transition-colors duration-200"
                         >
                             <TableCell className="font-medium pl-6">{info.name}</TableCell>
                             <TableCell className="text-right pr-6">
