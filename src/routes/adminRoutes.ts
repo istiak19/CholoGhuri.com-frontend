@@ -1,3 +1,4 @@
+import AddDivision from "@/pages/Admin/AddDivision";
 import { lazy } from "react";
 
 const Analytics = lazy(() => import("@/pages/Admin/Analytics"));
@@ -12,6 +13,11 @@ export const adminSidebarRoute = [
                 title: "Analytics",
                 url: "/admin/analytics",
                 component: Analytics,
+            },
+            {
+                title: "Add Division",
+                url: "/admin/add-division",
+                component: AddDivision,
             },
             {
                 title: "Add Tour",
