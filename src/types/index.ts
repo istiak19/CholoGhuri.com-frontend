@@ -18,4 +18,14 @@ export interface ISidebarItem {
     }[];
 };
 
+export interface IDivision {
+  _id: string
+  name: string
+  thumbnail: string
+  description: string
+  createdAt: string
+  updatedAt: string
+  slug: string
+};
+
 export type IRole = "GUIDE" | "USER" | "ADMIN" | "SUPER_ADMIN"
