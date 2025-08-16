@@ -318,8 +318,8 @@ export default function AddTour() {
                                                 disabled={divisionLoading}
                                             >
                                                 <FormControl>
-                                                    <SelectTrigger className="w-full">
-                                                        <SelectValue />
+                                                    <SelectTrigger className="w-full cursor-pointer">
+                                                        <SelectValue placeholder="Select a division" />
                                                     </SelectTrigger>
                                                 </FormControl>
                                                 <SelectContent>
@@ -344,8 +344,8 @@ export default function AddTour() {
                                                 defaultValue={field.value}
                                             >
                                                 <FormControl>
-                                                    <SelectTrigger className="w-full">
-                                                        <SelectValue />
+                                                    <SelectTrigger className="w-full cursor-pointer">
+                                                        <SelectValue placeholder="Select a tour type" />
                                                     </SelectTrigger>
                                                 </FormControl>
                                                 <SelectContent>
