@@ -15,6 +15,7 @@ import type { IRole } from "@/types";
 import Home from "@/pages/Home";
 import Tours from "@/pages/Tours";
 import TourDetails from "@/pages/TourDetails";
+import Booking from "@/pages/User/Booking";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/tours/:id",
         Component: TourDetails
+      },
+      {
+        path: "/booking/:id",
+        Component: Booking
       },
     ]
   },
