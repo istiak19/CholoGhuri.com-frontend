@@ -13,6 +13,8 @@ import { withAuth } from "@/utils/withAuth";
 import { role } from "@/constants/role";
 import type { IRole } from "@/types";
 import Home from "@/pages/Home";
+import Tours from "@/pages/Tours";
+import TourDetails from "@/pages/TourDetails";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
       {
         path: "about",
         Component: About
+      },
+      {
+        path: "/tours",
+        Component: Tours
+      },
+      {
+        path: "/tours/:id",
+        Component: TourDetails
       },
     ]
   },
