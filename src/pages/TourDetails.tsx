@@ -1,14 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { useGetDivisionQuery } from "@/redux/features/division/division.api";
 import { useGetTourQuery } from "@/redux/features/tour/tour.api";
+import type { ITourPackage } from "@/types";
 import { format } from "date-fns";
 import { Link, useParams } from "react-router";
 
 const TourDetails = () => {
     const { id } = useParams();
     const { data } = useGetTourQuery({ _id: id });
-    const tourData = data?.[0];
-    const { data: divisionData } = useGetDivisionQuery({ _id: data?.[0]?.division, fields: "name", });
+    const tourData: ITourPackage = data?.data?.[0];
+    const { data: divisionData } = useGetDivisionQuery({ _id: data?.[0]?.division, });
 
     return (
         <div className="container mx-auto p-6">
