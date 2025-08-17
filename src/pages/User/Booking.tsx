@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useAddBookingMutation } from "@/redux/features/booking/booking.api";
 import { useGetTourQuery } from "@/redux/features/tour/tour.api";
+import type { ITourPackage } from "@/types";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
@@ -9,8 +10,7 @@ const Booking = () => {
     const [totalAmount, setTotalAmount] = useState(0);
     const { id } = useParams();
     const { data, isLoading, isError } = useGetTourQuery({ _id: id });
-    const tourData = data?.[0];
-    // console.log(tourData)
+    const tourData: ITourPackage = data?.data?.[0];
     // const { data: tourTypeData } = useGetTourTypeQuery(undefined);
     // console.log(tourTypeData)
     // const type = tourTypeData?.find((d: { _id: string; name: string }) => d._id === tourData?.tourType);
@@ -32,7 +32,7 @@ const Booking = () => {
     };
 
     const handleBooking = async () => {
-        if (data) {
+        if (data?.data) {
             const bookingData: { tour: string | undefined; guestCount: number } = {
                 tour: id,
                 guestCount: guestCount,
@@ -57,13 +57,13 @@ const Booking = () => {
                 </div>
             )}
 
-            {!isLoading && data?.length === 0 && (
+            {!isLoading && data?.data?.length === 0 && (
                 <div>
                     <p>No Data Found</p>{" "}
                 </div>
             )}
 
-            {!isLoading && !isError && data!.length > 0 && (
+            {!isLoading && !isError && data?.data!.length > 0 && (
                 <>
                     {/* Left Section - Tour Summary */}
                     <div className="flex-1 space-y-6">
