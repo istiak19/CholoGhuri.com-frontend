@@ -110,7 +110,7 @@ const LoginForm = ({
                     />
 
                     <Button type="submit" className="w-full cursor-pointer">
-                        Login with Google
+                        Login
                     </Button>
                 </form>
             </Form>
@@ -122,7 +122,7 @@ const LoginForm = ({
             </div>
             {/* http://localhost:5000/api/v1/auth/google */}
             <Button
-                onClick={() => window.open(`${config.baseUrl}/auth/google`)}
+                onClick={() => { window.location.href = `${config.baseUrl}/auth/google` }}
                 type="button"
                 variant="outline"
                 className="w-full cursor-pointer"

@@ -1,69 +1,127 @@
-# React + TypeScript + Vite
+# 🌍 CholoGhuri.com – Tour Booking Web Application (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📖 Project Overview
 
-Currently, two official plugins are available:
+**CholoGhuri.com** is a modern, responsive **tour booking web application** where users can **browse, explore, and book tours** seamlessly.
+It provides a smooth UI/UX for exploring destinations, viewing detailed tour plans, selecting guests, calculating costs dynamically, and completing bookings with payment integration.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The frontend is built with **React, Redux Toolkit, and TailwindCSS**, and communicates with the backend API for dynamic data handling.
 
-## Expanding the ESLint configuration
+🔗 **Live Demo**: [chologhuri-com.netlify.app](https://chologhuri-com.netlify.app/)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## ✨ Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+* 🏞 **Tour Listing & Search** – Browse tours with images, titles, and locations. Includes search, sorting, and pagination.
+* 📋 **Tour Details Page** – Full details with itinerary, amenities, inclusions/exclusions, and guest limits.
+* 🎫 **Booking System** – Select guest count, calculate total cost in real-time, and submit bookings.
+* 💳 **Payment Integration** – Redirects to confirmation with transaction details.
+* 📱 **Responsive UI** – Optimized for mobile, tablet, and desktop.
+* ⚡ **Dynamic State & Data Fetching** – Managed with Redux Toolkit & RTK Query.
+* 🚨 **Error & Loading Handling** – User-friendly messages for loading, errors, or missing data.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 🛠️ Tech Stack
+
+**Frontend Framework**: React (with Hooks)
+**State Management**: Redux Toolkit + RTK Query
+**Routing**: React Router v7
+**Styling**: TailwindCSS + Custom Components
+**UI Enhancements**: Radix UI, Framer Motion, React Icons, Lucide React
+**Forms & Validation**: React Hook Form + Zod
+**Utilities**: Axios, Date-fns, SweetAlert2, React Toastify, Sonner
+
+---
+
+## ⚙️ Installation & Setup
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/istiak19/CholoGhuri.com-frontend.git
+   cd CholoGhuri.com-frontend
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Run development server**
+
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for production**
+
+   ```bash
+   npm run build
+   ```
+
+5. **Preview production build**
+
+   ```bash
+   npm run preview
+   ```
+
+---
+
+## 📂 Project Structure (key folders)
+
+```
+CholoGhuri.com-frontend/
+│── src/
+│   ├── components/    # Reusable UI components
+│   ├── features/      # Redux slices & API logic
+│   ├── pages/         # Page-level components (Tours, Booking, etc.)
+│   ├── routes/        # App routing setup
+│   ├── styles/        # Tailwind and custom styles
+│   └── utils/         # Helper functions & constants
+│── public/            # Static assets
+│── package.json
+│── vite.config.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🔧 Configuration
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+* **Backend API URL**: Update API base URL inside your Redux Toolkit `apiSlice` or environment variables if needed.
+* **Environment Variables** (create `.env` file):
+
+  ```env
+  VITE_API_URL=https://your-backend-api.com
+  VITE_STRIPE_KEY=your-stripe-public-key
+  ```
+
+---
+
+## 🧪 Testing & Linting
+
+Run ESLint for code quality:
+
+```bash
+npm run lint
 ```
+
+---
+
+## 🚀 Deployment
+
+The frontend is deployed on **Netlify**:
+👉 [https://chologhuri-com.netlify.app/](https://chologhuri-com.netlify.app/)
+
+To deploy manually:
+
+1. Run `npm run build`
+2. Upload the `dist/` folder to Netlify, Vercel, or any static hosting provider.
+
+---
+
+## 🙌 Contributors
+
+👨‍💻 **Developer**: [Istiak Ahmed](https://github.com/istiak19)
