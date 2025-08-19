@@ -54,4 +54,11 @@ export interface IErrorResponse {
         name: string;
     };
     stack?: string;
-}
+};
+
+export interface SectionHeadingProps {
+    kicker?: string;
+    title: string;
+    subtitle?: string;
+    align?: "left" | "center";
+};
