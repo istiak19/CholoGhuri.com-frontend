@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 
 export type { ISentOtp, IVerify } from "./auth";
 export type { ITourPackage } from "./tour";
+export type { Faq3Props, FaqItem } from "./home";
 
 export interface IResponse<T> {
     statusCode: number;
@@ -53,4 +54,11 @@ export interface IErrorResponse {
         name: string;
     };
     stack?: string;
-}
+};
+
+export interface SectionHeadingProps {
+    kicker?: string;
+    title: string;
+    subtitle?: string;
+    align?: "left" | "center";
+};
