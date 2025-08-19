@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 
 export type { ISentOtp, IVerify } from "./auth";
 export type { ITourPackage } from "./tour";
+export type { Faq3Props, FaqItem } from "./home";
 
 export interface IResponse<T> {
     statusCode: number;
