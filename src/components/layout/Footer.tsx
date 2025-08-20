@@ -12,7 +12,7 @@ const Footer = () => {
 
     return (
         <footer
-            className="relative border-t border-[#FF7A00] dark:border-[#FFA94D] bg-cover bg-center"
+            className="relative border-t border-[#ff7b00c3] bg-cover bg-center"
             style={{ backgroundImage: `url(${footerPic})` }}
         >
             {/* Overlay for readability */}
@@ -95,9 +95,9 @@ const Footer = () => {
                 </div>
 
                 {/* Copyright */}
-                <div className="border-t border-white/20 pt-8 text-center text-gray-300">
+                <div className="border-t border-[#ff7b0038] pt-8 text-center text-gray-300">
                     &copy; {new Date().getFullYear()}{" "}
-                    <span className="text-yellow-400">CholoGhuri.com</span>. All rights reserved.
+                    <span className="text-[#FF7A00]">CholoGhuri.com</span>. All rights reserved.
                 </div>
             </div>
         </footer>

@@ -12,7 +12,7 @@ const AddDivision = () => {
     const handleDelete = async (id: string) => {
         try {
             const res = await deleteDivision(id).unwrap();
-            console.log(res)
+            // console.log(res)
             if (res.success === true) {
                 toast.success(res.message);
             }

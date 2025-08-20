@@ -15,6 +15,7 @@ const navigationLinks = [
   { href: "/tours", label: "Tours", role: "PUBLIC" },
   { href: "/admin", label: "Dashboard", role: role.admin },
   { href: "/user", label: "Dashboard", role: role.user },
+  { href: "/contact", label: "Contact", role: "PUBLIC" },
 ]
 
 export default function Navbar() {

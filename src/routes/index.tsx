@@ -1,22 +1,26 @@
 import App from "@/App";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import About from "@/pages/About";
-import Login from "@/pages/Login";
-import Register from "@/pages/Register";
-import Verify from "@/pages/Verify";
 import { generateRoutes } from "@/utils/generatingRoute";
 import { createBrowserRouter, Navigate } from "react-router";
 import { adminSidebarRoute } from "./adminRoutes";
 import { userSidebarRoute } from "./userRoutes";
-import Unauthorized from "@/pages/Unauthorized";
 import { withAuth } from "@/utils/withAuth";
 import { role } from "@/constants/role";
 import type { IRole } from "@/types";
 import Home from "@/pages/Home";
-import Tours from "@/pages/Tours";
-import TourDetails from "@/pages/TourDetails";
-import Booking from "@/pages/User/Booking";
-import Success from "@/pages/Payment/Success";
+import { lazy } from "react";
+
+const Login = lazy(() => import("@/pages/Login"));
+const Register = lazy(() => import("@/pages/Register"));
+const Verify = lazy(() => import("@/pages/Verify"));
+const Unauthorized = lazy(() => import("@/pages/Unauthorized"));
+const Tours = lazy(() => import("@/pages/Tours"));
+const TourDetails = lazy(() => import("@/pages/TourDetails"));
+const Booking = lazy(() => import("@/pages/User/Booking"));
+const Success = lazy(() => import("@/pages/Payment/Success"));
+const Contact = lazy(() => import("@/pages/Contact"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
 
 const router = createBrowserRouter([
   {
@@ -30,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "about",
         Component: About
+      },
+      {
+        path: "contact",
+        Component: Contact
       },
       {
         path: "/tours",
@@ -84,6 +92,10 @@ const router = createBrowserRouter([
   {
     path: "/payment/success",
     Component: withAuth(Success)
+  },
+  {
+    path: "*",
+    Component: NotFound
   },
 ]);
 
