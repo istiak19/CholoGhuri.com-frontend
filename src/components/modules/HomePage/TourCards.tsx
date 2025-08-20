@@ -16,8 +16,8 @@ const TourCards = () => {
     if (isLoading) return <Loading />;
 
     return (
-        <section className="pt-16">
-            <div>
+        <section className="pt-10">
+            <div className="mb-12">
                 <SectionHeading kicker="Best Tours" title="Recommended Trips For You" />
             </div>
             <div className="container mx-auto px-4 grid gap-10 md:grid-cols-2 lg:grid-cols-3">

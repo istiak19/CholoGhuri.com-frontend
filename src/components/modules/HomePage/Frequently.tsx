@@ -34,16 +34,16 @@ const faqItems: FaqItem[] = [
   },
 ];
 
-const Frequently = ({ heading = "Frequently Asked Questions",
+const Frequently = ({
   description = "Find answers to common questions about our tours, bookings, and packages. Can't find what you're looking for? Contact our support team.",
   items = faqItems }: Faq3Props) => {
     
   return (
-    <section className="py-16">
+    <section className="py-10">
       <div className="container space-y-16">
         <div className="mx-auto flex max-w-3xl flex-col text-left md:text-center">
           <h2 className="mb-3 text-3xl font-semibold md:mb-4 lg:mb-6 lg:text-4xl">
-            {heading}
+            Frequently Asked {" "}<span className="text-[#FF7A00]">Questions</span>
           </h2>
           <p className="text-muted-foreground lg:text-lg">{description}</p>
         </div>

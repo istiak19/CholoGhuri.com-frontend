@@ -1,3 +1,5 @@
+import SectionHeading from "@/components/SectionHeading/SectionHeading";
+
 const features = [
     {
         id: 1,
@@ -27,19 +29,14 @@ const features = [
 
 const FeaturesSection = () => {
     return (
-        <section className="py-16">
+        <section className="py-10">
             <div className="container mx-auto px-4">
                 <div className="mb-12">
-                    {/* Eyebrow title */}
-                    <p className="text-primary italic font-medium mb-2">
-                        CholoGhuri.com Feature
-                    </p>
-
-                    {/* Main heading */}
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                        Seamless Travel <br /> Planning{" "}
-                        <span className="italic font-medium text-gray-400">Made Easy.</span>
-                    </h2>
+                   <SectionHeading
+                   title="Seamless Travel Planning Made Easy"
+                   align="center"
+                   kicker="Feature"
+                   />
                 </div>
                 <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                     {features.map((feature) => (
