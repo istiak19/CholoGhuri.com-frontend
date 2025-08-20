@@ -66,8 +66,8 @@ axiosInstance.interceptors.response.use(
 
             isRefreshing = true;
             try {
-                const res = await axiosInstance.post("/auth/refresh-token");
-                console.log("New Token arrived", res);
+                await axiosInstance.post("/auth/refresh-token");
+                // console.log("New Token arrived", res);
 
                 processQueue(null);
 

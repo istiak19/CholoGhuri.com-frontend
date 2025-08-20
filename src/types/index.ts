@@ -11,6 +11,11 @@ export interface IResponse<T> {
     data: T;
 };
 
+export interface ITourType{
+    _id:string;
+    name:string
+};
+
 export interface ISidebarItem {
     title: string;
     items: {

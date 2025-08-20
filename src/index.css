@@ -110,6 +110,21 @@
   --sidebar-ring: oklch(0.646 0.222 41.116);
 }
 
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 25s linear infinite;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
